@@ -1,4 +1,4 @@
-const baseUrl = 'https://crudcrud.com/api/0e90d26f5cab4926ab93902f204a05de/arrOfEvents';
+const baseUrl = 'https://crudcrud.com/api/41cf9a29272e4539a1e2a261c1d521df/event';
 
 
 export const getEvents = () => {
