@@ -27,10 +27,6 @@ export function saveEvent() {
     // renderEvents(getEvents);
 
 
-
-
-
-
     let newEvent = {
         id: Math.random() * 1000,
         name: name,
