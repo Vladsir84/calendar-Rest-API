@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calendar</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+        <nav class="header-navbar">
+            <button class="create-button create-event">
+                <div class="button-create-event">
+                    <svg class="create-event" width="36" height="36" viewBox="0 0 36 36">
+                        <path class="create-event" fill="#34A853" d="M16 16v14h4V20z"></path>
+                        <path class="create-event" fill="#4285F4" d="M30 16H20l-4 4h14z"></path>
+                        <path class="create-event" fill="#FBBC05" d="M6 16v4h10l4-4z"></path>
+                        <path class="create-event" fill="#EA4335" d="M20 16V6h-4v14z"></path>
+                        <path class="create-event" fill="none" d="M0 0h36v36H0z"></path>
+                    </svg>
+                </div>
+                <span class="create-button__text create-event">Create</span>
+            </button>
+            <button class="today-button">
+                Today
+            </button>
+            <div class="arrow-button">
+                <button class="arrow-button__prev button-style">
+                    <i class="material-icons arrow-button__size">keyboard_arrow_left</i>
+                </button>
+                <button class="arrow-button__next button-style">
+                    <i class="material-icons arrow-button__size ">keyboard_arrow_right</i>
+                </button>
+            </div>
+            <span class="dates">
+                November - December 2019
+            </span>
+        </nav>
+
+    </header>
+
+    <!--navigation-->
+
+    <nav class="days-navigation">
+        <div class="week">
+            <div class="day">
+                <div class="day-name">Sun</div>
+                <div class="day-number">25</div>
+            </div>
+            <div class="day">
+                <div class="day-name">Mon</div>
+                <div class="day-number">26</div>
+            </div>
+            <div class="day">
+                <div class="day-name">Tue</div>
+                <div class="day-number">27</div>
+            </div>
+            <div class="day">
+                <div class="day-name">We</div>
+                <div class="day-number">28</div>
+            </div>
+            <div class="day">
+                <div class="day-name">Th</div>
+                <div class="day-number">29</div>
+            </div>
+            <div class="day">
+                <div class="day-name">Fr</div>
+                <div class="day-number">30</div>
+            </div>
+            <div class="day">
+                <div class="day-name">Sat</div>
+                <div class="day-number">1</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Here we render calendar -->
+    <!--Left sidebar with timing-->
+
+    <section class="main">
+
+        <div class="timing"></div>
+        <div class="calendar-visualization"></div>
+        <!--             <div class="line"></div> -->
+
+    </section>
+
+    <!--Popup-->
+
+    <section class="popup">
+        <form class="popup__form">
+            <button class="close material-icons">
+                close
+            </button>
+            <input name="title" class="input__name" type="text" placeholder="Add title">
+
+            <div class="color-picker">
+                <label class="color-picker_label">
+                  <span class="color-picker_label-text">Select a color</span>
+                  <input class="event__color-picker" type="color" name="color" value="#4183f1">
+                </label>
+            </div>
+
+            <div class="date-block ">
+                <i class="Tiny material-icons">access_time</i>
+                <input class="start-date input-style" type="date" name="trip-start" value="2019-12-23" max="2020-12-23 ">
+
+                <input type="time" class="start-time time-list input-style " name="start-time" value="11:11">
+                <input type="time" class="end-time time-list input-style " name="end-time" value="11:11">
+
+                <input class="end-date input-style" type="date" name="trip-start" value="2019-12-23" max="2020-12-23 ">
+            </div>
+            <div class="description ">
+                <i class="Tiny material-icons ">format_align_left
+                </i>
+                <textarea class="description-input " name="text" cols="42 " rows="4 " placeholder="Add description"></textarea>
+            </div>
+            <div class="control ">
+                <button class="delete-event ">
+                    <i class="Tiny material-icons material-icons-delete">delete</i>
+                </button>
+                <button type="submit" class="submit-button ">Save</button>
+            </div>
+
+        </form>
+        <span class="event__name "></span>
+        <span class="event__description "></span>
+
+    </section>
+
+    <script src="./source/scripts/index.js" type="module"></script>
+</body>
+
+</html>

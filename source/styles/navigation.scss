@@ -1,0 +1,48 @@
+.days-navigation {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+
+.day-name {
+  font-size: 9px;
+  color: grey;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing: 0.8px;
+  &:hover {
+    color: blue;
+  }
+}
+
+.day-number {
+  font-size: 20px;
+  padding: 6px;
+}
+
+.day {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-weight: 400;
+  color: #70757a;
+}
+
+.week {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-left: 60px;
+}
+
+.current-day {
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+}
