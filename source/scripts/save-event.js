@@ -24,11 +24,8 @@ export function saveEvent() {
     }
 
     createNewEvent(name, color, startDate, endDate, description);
-    saveEvents();
     renderEvents(getEvents);
 
-    // const defaultBackgroundColor = document.querySelector('.event__color-picker');
-    // defaultBackgroundColor.value = '#4183f1';
 
     const popup = document.querySelector(`.popup`);
     popup.classList.remove('popup-switch');
@@ -38,18 +35,18 @@ export function saveEvent() {
     calendarRendering();
 }
 
-function createNewEvent(name, color, startDate, endDate, description) {
-    let newEvent = {
-        id: Math.random() * 1000,
-        name: name,
-        color: color,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
-        description: description,
-    }
-    if (!isNaN(newEvent.startDate.getTime()) && !isNaN(newEvent.endDate.getTime())) {
-        arrOfEvents.push(newEvent);
-    }
+
+let newEvent = {
+    id: Math.random() * 1000,
+    name: name,
+    color: color,
+    startDate: new Date(startDate),
+    endDate: new Date(endDate),
+    description: description,
 }
+
+saveEvents(newEvent)
+    .then(() => renderDates())
+
 
 saveButton.addEventListener('click', saveEvent);
