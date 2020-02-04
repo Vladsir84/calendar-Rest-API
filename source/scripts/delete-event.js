@@ -7,15 +7,11 @@ export function deleteButtonOnclick(obj) {
 
     function deleteEvent() {
         event.preventDefault();
-        for (let i = 0; i < getEvents.length; i++) {
-            if (obj.id == getEvents[i].id) {
-                getEvents.splice(i, 1);
-                deleteEvents(obj._id)
-                    .then(() => renderDates())
-                const popup = document.querySelector(`.popup`);
-                popup.classList.remove('popup-switch');
+        deleteEvents(obj._id)
+            .then(() => renderDates())
 
-            }
-        }
+        const popup = document.querySelector(`.popup`);
+        popup.classList.remove('popup-switch');
+
     }
 }

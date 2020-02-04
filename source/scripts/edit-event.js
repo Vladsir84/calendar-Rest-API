@@ -2,18 +2,18 @@ import { deleteEvents } from './gateways.js';
 import { deleteButtonOnclick } from './delete-event.js';
 import { renderDates } from './navigation.js';
 
-export function activeEventOnclick() {
+export function activeEventOnclick(array) {
     let activeEvents = document.querySelectorAll('.active_event')
     for (let i = 0; i < activeEvents.length; i++) {
         activeEvents[i].addEventListener('click', function() {
-            for (let j = 0; j < getEvents.length; j++) {
-                if (event.target.dataset.id == getEvents[j].id) {
-                    displayCurrentEvent(getEvents[j]);
-                    deleteButtonOnclick(getEvents[j]);
+            for (let j = 0; j < array.length; j++) {
+                if (event.target.dataset.id == array[j].id) {
+                    displayCurrentEvent(array[j]);
+                    deleteButtonOnclick(array[j]);
 
                     // edit event
                     let editButton = document.querySelector('.submit-button ');
-                    editButton.addEventListener('click', editEvent.bind(editButton, getEvents[j]));
+                    editButton.addEventListener('click', editEvent.bind(editButton, array[j]));
                 }
             }
         })

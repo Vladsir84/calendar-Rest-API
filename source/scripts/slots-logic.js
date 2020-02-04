@@ -1,5 +1,6 @@
 import { arrayOfDates } from './navigation.js';
 import { getEvents } from './gateways.js';
+import { activeEventOnclick } from './edit-event.js';
 
 let eventPlace = document.querySelectorAll('.day');
 let eventDay = document.querySelectorAll('.day-number');
@@ -86,7 +87,7 @@ export function renderFromServer() {
     getEvents()
         .then(result => {
             renderEvents(result);
-            // activeEventOnclick(result);
+            activeEventOnclick(result);
             arrOfEvents = result;
         })
 }
