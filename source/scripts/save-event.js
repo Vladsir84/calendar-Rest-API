@@ -23,9 +23,25 @@ export function saveEvent() {
         return;
     }
 
-    createNewEvent(name, color, startDate, endDate, description);
-    renderEvents(getEvents);
+    // createNewEvent(name, color, startDate, endDate, description);
+    // renderEvents(getEvents);
 
+
+
+
+
+
+    let newEvent = {
+        id: Math.random() * 1000,
+        name: name,
+        color: color,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        description: description,
+    }
+
+    saveEvents(newEvent)
+        .then(() => renderDates())
 
     const popup = document.querySelector(`.popup`);
     popup.classList.remove('popup-switch');
@@ -33,20 +49,6 @@ export function saveEvent() {
     renderDates();
     activeEventOnclick();
     calendarRendering();
+
 }
-
-
-let newEvent = {
-    id: Math.random() * 1000,
-    name: name,
-    color: color,
-    startDate: new Date(startDate),
-    endDate: new Date(endDate),
-    description: description,
-}
-
-saveEvents(newEvent)
-    .then(() => renderDates())
-
-
 saveButton.addEventListener('click', saveEvent);

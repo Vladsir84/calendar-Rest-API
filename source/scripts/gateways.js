@@ -4,9 +4,7 @@ const baseUrl = 'https://crudcrud.com/api/0e90d26f5cab4926ab93902f204a05de/arrOf
 export const getEvents = () => {
     return fetch(baseUrl)
         .then(response => response.json())
-        .catch(error => {
-            error.message = 'Server calls limit is exceeded. Need update server URL';
-        });
+
 };
 
 export const saveEvents = eventData => {
@@ -40,7 +38,9 @@ export const editEvents = (eventId, eventData) => {
 export const deleteEvents = (eventId) => {
     return fetch(`${baseUrl}/${eventId}`, {
             method: 'DELETE',
-
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
         })
         .catch(error => {
             error.message = 'Server calls limit is exceeded. Need update server URL';
