@@ -1,4 +1,4 @@
-import { getEvents, editEvents } from './gateways.js';
+import { deleteEvents } from './gateways.js';
 import { deleteButtonOnclick } from './delete-event.js';
 import { renderDates } from './navigation.js';
 
@@ -63,13 +63,9 @@ function displayCurrentEvent(editedEvent) {
 
 function editEvent(obj) {
 
-    for (let i = 0; i < getEvents.length; i++) {
-        if (obj.id == getEvents[i].id) {
-            getEvents.splice(i, 1);
-            editEvents();
-            renderDates();
-        }
-    }
+    deleteEvents(obj._id)
+        .then(() => renderDates())
+
 
     let editButton = document.querySelector('.submit-button ');
     editButton.removeEventListener('click', editEvent);

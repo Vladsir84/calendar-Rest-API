@@ -1,4 +1,4 @@
-import { getEvents, deleteEvents } from './gateways.js'
+import { deleteEvents } from './gateways.js'
 import { renderDates } from './navigation.js'
 
 export function deleteButtonOnclick(obj) {
@@ -10,11 +10,11 @@ export function deleteButtonOnclick(obj) {
         for (let i = 0; i < getEvents.length; i++) {
             if (obj.id == getEvents[i].id) {
                 getEvents.splice(i, 1);
-                deleteEvents();
+                deleteEvents(obj._id)
+                    .then(() => renderDates())
                 const popup = document.querySelector(`.popup`);
                 popup.classList.remove('popup-switch');
-                renderDates();
-                return;
+
             }
         }
     }
