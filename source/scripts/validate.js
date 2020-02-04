@@ -1,4 +1,4 @@
-import { getEvents } from './gateways.js';
+import { arrOfEvents } from './slots-logic.js';
 
 export function validate(start, end) {
     if (!errorDate(start, end) || !duration(start, end) || !checkForUpdate(start) || !checkEvent()) return false;
@@ -84,7 +84,7 @@ export const checkEvent = () => {
     let currentEnd;
 
 
-    getEvents.map(arg => {
+    arrOfEvents.map(arg => {
         beginEv.push(
             new Date(arg.startDate)
         );
