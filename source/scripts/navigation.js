@@ -1,9 +1,7 @@
 import { calendarRendering } from './calendar-visualization.js'
-import { getEvents, } from './gateways.js'
-import { renderEvents } from './slots-logic.js'
 import { redLine } from './red-line.js'
 import { activeEventOnclick } from './edit-event.js'
-import { getFromLocalStorage } from './storage.js'
+import { renderFromServer } from './slots-logic.js'
 
 let dayNumbers = document.querySelectorAll('.day-number');
 let dates = document.querySelector('.dates');
@@ -45,9 +43,11 @@ export function renderDates() {
         }
     }
     showCurrentMonthAndYear();
+
     let clear = document.querySelectorAll('.active_event')
     for (let i = 0; i < clear.length; i++) clear[i].remove();
-    renderEvents(getEvents);
+
+    renderFromServer();
     activeEventOnclick();
     redLine();
 };

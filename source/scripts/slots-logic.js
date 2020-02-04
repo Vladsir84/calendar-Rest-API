@@ -1,19 +1,19 @@
 import { arrayOfDates } from './navigation.js';
-import { getEvents, savetoLocalStorage, getFromLocalStorage } from './storage.js'
+import { getEvents } from './gateways.js';
 
 let eventPlace = document.querySelectorAll('.day');
 let eventDay = document.querySelectorAll('.day-number');
 
-export function displayEvent(starttime, endTime, name, descriprion, id, color) {
-    if (arrayOfDates[0].getMonth() === starttime.getMonth()) {
-        let diff = ((endTime - starttime) / 1000 / 60);
+export function displayEvent(startTime, endTime, name, description, id, color) {
+    if (arrayOfDates[0].getMonth() === startTime.getMonth()) {
+        let diff = ((endTime - startTime) / 1000 / 60);
         for (let i = 0; i < 7; i++) {
 
-            let timeParts = (starttime + '').split(' ')[4].split(':');
+            let timeParts = (startTime + '').split(' ')[4].split(':');
 
             if (eventDay[i].innerHTML == endTime.getDate()) {
                 //create long event
-                if (starttime.getDate() !== endTime.getDate()) {
+                if (startTime.getDate() !== endTime.getDate()) {
                     let activeEventShort = document.createElement('div');
                     let activeEventLong = document.createElement('div');
                     activeEventShort.classList.add('active_event');
@@ -32,12 +32,12 @@ export function displayEvent(starttime, endTime, name, descriprion, id, color) {
                     eventPlace[i].append(activeEventLong);
 
                     activeEventLong.innerHTML += `${name}<br>`
-                    activeEventLong.innerHTML += `${(starttime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
-                    activeEventLong.innerHTML += `${descriprion}`;
+                    activeEventLong.innerHTML += `${(startTime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
+                    activeEventLong.innerHTML += `${description}`;
 
                     activeEventShort.innerHTML += `${name}<br>`
-                    activeEventShort.innerHTML += `${(starttime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
-                    activeEventShort.innerHTML += `${descriprion}`;
+                    activeEventShort.innerHTML += `${(startTime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
+                    activeEventShort.innerHTML += `${description}`;
 
 
                     activeEventShort.setAttribute('data-id', id);
@@ -56,8 +56,8 @@ export function displayEvent(starttime, endTime, name, descriprion, id, color) {
 
                     activeEvent.style.marginTop = `${margin + 100}px`;
                     activeEvent.innerHTML += `${name}<br>`
-                    activeEvent.innerHTML += `${(starttime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
-                    activeEvent.innerHTML += `${descriprion}`;
+                    activeEvent.innerHTML += `${(startTime + '').split(' ')[4]} - ${(endTime + '').split(' ')[4]}<br>`;
+                    activeEvent.innerHTML += `${description}`;
 
 
                     activeEvent.setAttribute('data-id', id);
@@ -68,14 +68,25 @@ export function displayEvent(starttime, endTime, name, descriprion, id, color) {
     }
 };
 
-export function renderEvents() {
-    getFromLocalStorage();
-    for (let i = 0; i < getEvents.length; i++) {
-        if (typeof(getEvents[i].startDate) !== 'object') {
-            getEvents[i].startDate = new Date(getEvents[i].startDate);
-            getEvents[i].endDate = new Date(getEvents[i].endDate);
+export function renderEvents(array) {
+    if (array.length !== 0);
+    for (let i = 0; i < array.length; i++) {
+        if (typeof(array[i].startDate) !== 'object') {
+            array[i].startDate = new Date(array[i].startDate);
+            array[i].endDate = new Date(array[i].endDate);
         }
-        displayEvent(getEvents[i].startDate, getEvents[i].endDate, getEvents[i].name,
-            getEvents[i].description, getEvents[i].id, getEvents[i].color);
+        displayEvent(array[i].startDate, array[i].endDate, array[i].name,
+            array[i].description, array[i].id, array[i].color);
     };
 };
+
+export let arrOfEvents = [];
+
+export function renderFromServer() {
+    getEvents()
+        .then(result => {
+            renderEvents(result);
+            // activeEventOnclick(result);
+            arrOfEvents = result;
+        })
+}
