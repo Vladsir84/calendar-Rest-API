@@ -1,12 +1,9 @@
 const baseUrl = 'https://crudcrud.com/api/0e90d26f5cab4926ab93902f204a05de/arrOfEvents';
 
-const mapTasks = tasks =>
-    tasks.map(({ _id, ...rest }) => ({...rest, id: _id }));
 
 export const getEvents = () => {
     return fetch(baseUrl)
         .then(response => response.json())
-        .then(tasks => mapTasks(tasks))
         .catch(error => {
             error.message = 'Server calls limit is exceeded. Need update server URL';
         });
